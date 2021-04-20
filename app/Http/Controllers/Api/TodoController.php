@@ -35,7 +35,7 @@ class TodoController extends Controller
      */
     public function store(TodoRequest $request)
     {
-        $request->validate();
+        $request->validated();
 
         $user = auth()->user();
         $todo = new Todo($request->all());
@@ -65,7 +65,7 @@ class TodoController extends Controller
      */
     public function update(TodoRequest $request, Todo $todo)
     {
-        $request->validate();
+        $request->validated();
         $todo->todo = $request->todo;
         $todo->label = $request->label;
         $todo->done = $request->done;
@@ -82,7 +82,7 @@ class TodoController extends Controller
     public function destroy(Todo $todo)
     {
         if (auth()->user()->id == $todo->user_id){
-            $todo->delete;
+            $todo->delete();
             return $this->apiSuccess($todo);
         }
         return $this->apiError(

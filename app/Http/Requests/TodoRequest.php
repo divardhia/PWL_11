@@ -14,7 +14,7 @@ class TodoRequest extends ApiRequest
     public function authorize()
     {
         if ($this->method() == Request::METHOD_POST)
-        return true;
+            return true;
         $todo = $this->route('todo');
         return auth()->user()->id == $todo->user_id;
     }
