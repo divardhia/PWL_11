@@ -57,8 +57,9 @@ class AuthController extends Controller
             auth()->user()->tokens()->delete();
             return $this->apiSuccess('Tokens revoked');
         } catch (\Throwable $e){
-            throw new HttpResponseException($this->apiError(null,
-            Response::HTTP_INTERNAL_SERVER_ERROR
+            throw new HttpResponseException($this->apiError(
+                null,
+                Response::HTTP_INTERNAL_SERVER_ERROR,
         ));
         }
     }
